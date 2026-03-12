@@ -5,7 +5,7 @@ public record SensorReadings( String moscowTime,
                               int humidity,
                               int pressure,
                               int light,
-                              long timestamp // Добавим для кэширования картинки
+                              long timestamp
 ) {
     public SensorReadings() {
         this("12.03.2026 19:16:00", 0.0, 0, 0, 0, System.currentTimeMillis());

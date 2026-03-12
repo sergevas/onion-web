@@ -13,7 +13,7 @@ import jakarta.ws.rs.core.MediaType;
 public class PlantUiResource {
 
     @Inject
-    Template readings;
+    Template plantUI;
     @Inject
     PlantState state;
 
@@ -21,7 +21,7 @@ public class PlantUiResource {
     @Path("/updates")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getUpdates() {
-        return readings.fragment("sync_content")
+        return plantUI.fragment("sync_content")
                 .data("sensorReadings", state.getReadings());
     }
 

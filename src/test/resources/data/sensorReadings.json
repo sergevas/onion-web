@@ -1,0 +1,8 @@
+{
+  "temperature": 22.5,
+  "humidity": 60,
+  "pressure": 1013,
+  "light": 300,
+  "cameraMode": "NORM",
+  "timestamp": "2024-06-01T12:00:00Z"
+}

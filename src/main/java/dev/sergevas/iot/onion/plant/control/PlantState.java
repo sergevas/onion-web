@@ -1,6 +1,6 @@
-package dev.sergevas.iot.onion.control;
+package dev.sergevas.iot.onion.plant.control;
 
-import dev.sergevas.iot.onion.entity.SensorReadings;
+import dev.sergevas.iot.onion.plant.entity.SensorReadings;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -15,6 +15,11 @@ public class PlantState {
         this.lastPhoto.set(photo);
     }
 
-    public SensorReadings getReadings() { return currentReadings.get(); }
-    public byte[] getPhoto() { return lastPhoto.get(); }
+    public SensorReadings getReadings() {
+        return currentReadings.get();
+    }
+
+    public byte[] getPhoto() {
+        return lastPhoto.get();
+    }
 }

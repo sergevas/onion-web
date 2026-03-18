@@ -1,6 +1,6 @@
 package dev.sergevas.iot.onion.plant.control;
 
-import dev.sergevas.iot.onion.plant.entity.SensorReadings;
+import dev.sergevas.iot.onion.shared.entity.SensorReadings;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.concurrent.atomic.AtomicReference;

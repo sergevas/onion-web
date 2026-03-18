@@ -1,8 +1,8 @@
-package dev.sergevas.iot.onion.plant.entity;
+package dev.sergevas.iot.onion.shared.entity;
 
 public enum CameraMode {
-    NORM("Дневное освещение"),
-    NIGHT("Ночной режим"),
+    NORM("дневное освещение"),
+    NIGHT("ночной режим"),
     UNDEFINED("Не определён");
 
     private final String description;

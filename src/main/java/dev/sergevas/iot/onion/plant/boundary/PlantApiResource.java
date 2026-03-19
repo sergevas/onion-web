@@ -19,7 +19,7 @@ import java.util.Optional;
 
 import static dev.sergevas.iot.onion.file.boundary.SensorDataFileDumpAdapter.IMAGE_EXT;
 
-@Path("plant/api")
+@Path("/api")
 public class PlantApiResource {
 
     @Inject

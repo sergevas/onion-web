@@ -61,7 +61,7 @@
             <div class="d-flex align-items-center gap-2">
                 <!-- Кнопка ручного обновления -->
                 <button class="btn btn-outline-primary btn-sm"
-                        hx-get="/plant/ui/updates"
+                        hx-get="/updates"
                         hx-swap="none"
                         hx-indicator="#loading-spinner">
                     Обновить
@@ -153,7 +153,7 @@
                         <!-- Динамическое фото -->
                         <div id="latest-photo" hx-swap-oob="true" class="mt-3">
                             <h5>Свежее фото</h5>
-                            <img src="/plant/ui/latest-photo.jpg?t={sensorReadings.timestamp}"
+                            <img src="/latest-photo.jpg?t={sensorReadings.timestamp}"
                                  class="figure-img img-fluid rounded border"
                                  style="max-width: 80%; height: auto;"
                                  alt="Фото луковок">
@@ -172,7 +172,7 @@
 </div>
 
 <!-- Скрытый триггер для авто-обновления каждые 5 секунд -->
-<div hx-get="/plant/ui/updates" hx-trigger="every 5s hx-swap=none"></div>
+<div hx-get="/updates" hx-trigger="every 5s hx-swap=none"></div>
 
 <script src="https://cdn.jsdelivr.net"></script>
 </body>

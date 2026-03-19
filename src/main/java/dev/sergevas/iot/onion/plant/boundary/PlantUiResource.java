@@ -19,7 +19,6 @@ public class PlantUiResource {
     PlantState state;
 
     @GET
-    @Path("/")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance fullPage() {
         Log.infof("Rendering full page with sensor readings: %s", state.getReadings());

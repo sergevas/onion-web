@@ -56,7 +56,7 @@ public record SensorReadings(Double temperature,
                 "Температура: " + (temperature != null ? String.format("%.2f °C", temperature) : "Нет данных"),
                 "Влажность: " + (humidity != null ? String.format("%.2f %%", humidity) : "Нет данных"),
                 "Давление: " + (pressure != null ? String.format("%d мм рт.ст.", getPressureMmhg()) : "Нет данных"),
-                "Количество света: " + (light != null ? String.format("%.2f лк", light) : "Нет данных"),
+                "Освещённость: " + (light != null ? String.format("%.2f лк", light) : "Нет данных"),
                 "Режим камеры: " + (cameraMode != null ? cameraMode.getDescription() : "Нет данных")
         );
     }

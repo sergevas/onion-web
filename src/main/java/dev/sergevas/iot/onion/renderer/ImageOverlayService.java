@@ -22,7 +22,7 @@ public class ImageOverlayService {
     public ImageOverlayService() {
         try {
             this.font = Font.createFont(Font.TRUETYPE_FONT,
-                    Objects.requireNonNull(getClass().getResourceAsStream("/fonts/NotoSans-Regular.ttf"))
+                    Objects.requireNonNull(getClass().getResourceAsStream("/META-INF/resources/NotoSans-Regular.ttf"))
             ).deriveFont(52f);
         } catch (Exception e) {
             throw new OnionWebException("Unable to create image font", e);

@@ -15,6 +15,8 @@ import org.jboss.resteasy.reactive.multipart.FilePart;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Optional;
 
 import static dev.sergevas.iot.onion.file.boundary.SensorDataFileDumpAdapter.IMAGE_EXT;
@@ -49,7 +51,7 @@ public class PlantApiResource {
                     })
                     .map(img -> imageOverlayService.render(img, IMAGE_EXT, sensorReadings.toStringFormatted()))
                     .orElse(new byte[0]);
-            sensorDataFileDumpAdapter.writeDataToFile(sensorReadings, imageWithOverlay);
+            sensorDataFileDumpAdapter.writeDataToFile(sensorReadings, imageWithOverlay, LocalDate.now(), LocalTime.now());
             state.update(sensorReadings, imageWithOverlay);
             return Response.ok().build();
         } catch (Exception e) {

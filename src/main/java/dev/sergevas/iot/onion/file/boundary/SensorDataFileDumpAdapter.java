@@ -26,14 +26,14 @@ public class SensorDataFileDumpAdapter {
     @ConfigProperty(name = "onion-app.storage.path")
     String storagePath;
 
-    public void writeDataToFile(SensorReadings readings, byte[] image) {
+    public void writeDataToFile(SensorReadings readings, byte[] image, LocalDate date, LocalTime time) {
         Log.infof("Enter writeDataToFile with readings: %s", readings);
         if (isNull(readings) && isNull(image)) {
             Log.warn("No sensor data or image provided, skipping file dump");
             return;
         }
-        var currentDate = DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDate.now());
-        var currentTime = DateTimeFormatter.ofPattern("HHmmss").format(LocalTime.now());
+        var currentDate = DateTimeFormatter.ofPattern("yyyyMMdd").format(date);
+        var currentTime = DateTimeFormatter.ofPattern("HHmmss").format(time);
         if (nonNull(readings)) {
             var dataFilePath = Path.of(storagePath, "data", currentDate, currentTime + ".json");
             try {
@@ -60,6 +60,8 @@ public class SensorDataFileDumpAdapter {
         }
         if (nonNull(image)) {
             var imageFilePath = Path.of(storagePath, "images", currentDate, currentTime + "." + IMAGE_EXT);
+            // TODO: This is for timelapse creation
+            //            var imageFilePath = Path.of(storagePath, "images", currentDate, currentDate + "_" + currentTime + "." + IMAGE_EXT);
             try {
                 Files.createDirectories(imageFilePath.getParent());
             } catch (IOException e) {

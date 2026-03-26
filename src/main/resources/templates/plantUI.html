@@ -168,6 +168,13 @@
                         </span>
                         {/fragment}
                     </div>
+                    <div id="video-container" class="mt-3">
+                        <h5>Покадровое видео</h5>
+                        <video controls style="max-width: 80%; height: auto;" class="rounded border">
+                            <source src="/latest-video.mp4?t={sensorReadings.timestamp}" type="video/mp4">
+                            Ваш браузер не поддерживает тег video.
+                        </video>
+                    </div>
                 </div>
             </div>
         </div>

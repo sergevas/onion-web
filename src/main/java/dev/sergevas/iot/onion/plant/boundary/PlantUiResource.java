@@ -1,5 +1,6 @@
 package dev.sergevas.iot.onion.plant.boundary;
 
+import dev.sergevas.iot.onion.file.boundary.VideoFileAdapter;
 import dev.sergevas.iot.onion.plant.control.PlantState;
 import io.quarkus.logging.Log;
 import io.quarkus.qute.Template;
@@ -9,6 +10,9 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+
+import static jakarta.ws.rs.core.Response.status;
 
 @Path("")
 public class PlantUiResource {
@@ -17,6 +21,8 @@ public class PlantUiResource {
     Template plantUI;
     @Inject
     PlantState state;
+    @Inject
+    VideoFileAdapter videoFileAdapter;
 
     @GET
     @Produces(MediaType.TEXT_HTML)
@@ -31,7 +37,6 @@ public class PlantUiResource {
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getUpdates() {
         Log.info("Rendering updates fragment with sensor readings");
-        // Uses getFragment() to render ONLY the code inside {#fragment id=sync_content}
         return plantUI.getFragment("sync_content")
                 .data("sensorReadings", state.getReadings());
     }
@@ -44,20 +49,14 @@ public class PlantUiResource {
         return state.getPhoto();
     }
 
-    // --- IOT DEVICE ENDPOINT ---
-
-    /*@POST
-    @Path("/api/update")
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response receiveData(
-            @RestForm("data") SensorReadings data,
-            @RestForm("photo") FileUpload file) throws IOException {
-
-        if (file != null && file.filePath() != null) {
-            byte[] imageBytes = Files.readAllBytes(file.filePath());
-            state.update(data, imageBytes);
-            return Response.ok().build();
-        }
-        return Response.status(Response.Status.BAD_REQUEST).build();
-    }*/
+    @GET
+    @Path("/latest-video.mp4")
+    @Produces("video/mp4")
+    public Response getLatestVideo() {
+        return videoFileAdapter.getVideo()
+                .map(content -> Response.ok(content)
+                        .header("Content-Disposition", "inline")
+                        .build())
+                .orElseGet(() -> status(Response.Status.NOT_FOUND).build());
+    }
 }

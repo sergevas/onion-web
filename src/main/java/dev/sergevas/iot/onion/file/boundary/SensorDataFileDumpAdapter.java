@@ -35,7 +35,7 @@ public class SensorDataFileDumpAdapter {
         var currentDate = DateTimeFormatter.ofPattern("yyyyMMdd").format(date);
         var currentTime = DateTimeFormatter.ofPattern("HHmmss").format(time);
         if (nonNull(readings)) {
-            var dataFilePath = Path.of(storagePath, "data", currentDate, currentTime + ".json");
+            var dataFilePath = Path.of(storagePath, "data", currentDate, currentDate + "_" + currentTime + ".json");
             try {
                 Files.createDirectories(dataFilePath.getParent());
             } catch (IOException e) {
@@ -59,9 +59,7 @@ public class SensorDataFileDumpAdapter {
             Log.warn("No sensor data provided, skipping data file dump");
         }
         if (nonNull(image)) {
-            var imageFilePath = Path.of(storagePath, "images", currentDate, currentTime + "." + IMAGE_EXT);
-            // TODO: This is for timelapse creation
-            //            var imageFilePath = Path.of(storagePath, "images", currentDate, currentDate + "_" + currentTime + "." + IMAGE_EXT);
+            var imageFilePath = Path.of(storagePath, "images", currentDate, currentDate + "_" + currentTime + "." + IMAGE_EXT);
             try {
                 Files.createDirectories(imageFilePath.getParent());
             } catch (IOException e) {
